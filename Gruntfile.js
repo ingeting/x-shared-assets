@@ -12,6 +12,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
 
     assemble: {
       options: {
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
         layout: 'default.hbs',
       },
       dist: {
-        files: {'_dist/': ['views/nav.mustache']},
+        files: {'_dist/<%= pkg.version %>/': ['views/nav.mustache']},
 
       },
     },
