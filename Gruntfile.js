@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {'_dist/<%= pkg.version %>/': ['views/*.mustache']},
-
+        options: {layout: 'none'},
       },
     },
     // Before creating new files, remove files from previous build.
