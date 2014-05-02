@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         layout: 'default.hbs',
       },
       dist: {
-        files: {'_dist/<%= pkg.version %>/': ['views/nav.mustache']},
+        files: {'_dist/<%= pkg.version %>/': ['views/*.mustache']},
 
       },
     },
