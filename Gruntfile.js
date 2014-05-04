@@ -29,12 +29,24 @@ module.exports = function(grunt) {
         layout: 'default.hbs',
       },
       dist: {
-        files: {'_dist/<%= pkg.version %>/': ['views/*.mustache']},
+        files: {
+          '_dist/<%= pkg.version %>/': ['views/*.mustache'],
+          '_dist/<%= pkg.versionParts.major %>.x/': ['views/*.mustache'],
+          '_dist/<%= pkg.versionParts.major %>.<%= pkg.versionParts.minor %>.x/': ['views/*.mustache'],
+          '_dist/dev-master/': ['views/*.mustache']
+        },
         options: {layout: 'none', data: 'data/*.json'},
       },
     },
     // Before creating new files, remove files from previous build.
-    clean: ['dist/**/*.*']
+    clean: {
+      dist: [
+        '_dist/<%= pkg.version %>/',
+        '_dist/<%= pkg.versionParts.major %>.x/',
+        '_dist/<%= pkg.versionParts.major %>.<%= pkg.versionParts.minor %>.x/',
+        '_dist/dev-master/**/*.*'
+        ]
+    }
 
   });
 

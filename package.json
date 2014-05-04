@@ -1,6 +1,11 @@
 {
   "name": "x-shared-assets",
   "version": "0.1.0",
+  "versionParts": {
+    "major": "0",
+    "minor": "1",
+    "fix": "0"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "assemble": "~0.4.4",
