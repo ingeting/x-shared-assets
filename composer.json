@@ -3,6 +3,14 @@
 	"description": "Shared assets experiment.",
 	"keywords": ["experiment", "includes"],
 	"license": "MIT",
+	"require": {
+		"mustache/mustache": "~2.5"
+	},
+	"autoload": {
+		"classmap": [
+			"classes/TemplateHelper.php"
+		]
+	},
 	"config": {
 		"preferred-install": "dist"
 	},
