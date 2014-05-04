@@ -1,7 +1,7 @@
-<h2>Navigation</h2>
+<h2>Navigation for {{nav.general.name}}</h2>
 <ul>
-	<li>Home</li>
-	<li>News</li>
-	<li>Sports</li>
-	<li>Entertainment</li>
+  {{#nav.navigation}}
+    <li>{{title}}</li>
+  {{/nav.navigation}}
+
 </ul>

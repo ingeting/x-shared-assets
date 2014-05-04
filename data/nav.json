@@ -1,0 +1,41 @@
+{
+   "general":{
+      "logo":"assets/images/logo.png",
+      "name" : "Dagbladet"
+   },
+   "navigation":[
+      {
+         "title":"Forsiden",
+         "link":"http://www.dagbladet.no"
+      },
+      {
+         "title":"Nyheter",
+         "link":"http://www.dagbladet.no/nyheter/",
+         "subnav":[
+            {
+               "title":"Innenriks",
+               "link":"http://www.dagbladet.no/nyheter/innenriks/"
+            },
+            {
+               "title":"Utenriks",
+               "link":"http://www.dagbladet.no/nyheter/utenriks/"
+            }
+         ]
+      },
+      {
+         "title":"Sport",
+         "link":"http://www.dagbladet.no/sport/",
+         "subnav":[
+            {
+               "title":"Fotball",
+               "link":"http://www.dagbladet.no/nyheter/fotball/"
+            },
+            {
+               "title":"Tennis",
+               "link":"http://www.dagbladet.no/nyheter/tennis/"
+            }
+         ]
+      }
+
+   ]
+}
