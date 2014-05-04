@@ -1,0 +1,1 @@
+<p>A secondary template showing Dagbladet and also support for multiple templates</p>
