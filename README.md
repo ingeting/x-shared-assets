@@ -12,3 +12,7 @@ An experiment on how to share public assets like header/footer, navigation, anal
 - Deploy med push (Grunt?)
 - Client som inkluderer basert på versjonsnummer (1.0.x, 1.x, master, dev-master)
 - Filstruktur
+
+## Maybe someday
+
+- Add githook: https://gist.github.com/GianlucaGuarini/8001627
