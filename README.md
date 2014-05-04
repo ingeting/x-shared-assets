@@ -15,4 +15,5 @@ An experiment on how to share public assets like header/footer, navigation, anal
 
 ## Maybe someday
 
+- Add version bumping with deployment: https://www.npmjs.org/package/grunt-push-release
 - Add githook: https://gist.github.com/GianlucaGuarini/8001627

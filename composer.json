@@ -1,0 +1,10 @@
+{
+	"name": "ingeting/x-shared-assets",
+	"description": "Shared assets experiment.",
+	"keywords": ["experiment", "includes"],
+	"license": "MIT",
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "stable"
+}
