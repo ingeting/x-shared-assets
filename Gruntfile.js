@@ -30,16 +30,13 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          '_dist/<%= pkg.version %>/': ['views/*.mustache'],
-          '_dist/<%= pkg.versionParts.major %>.x/': ['views/*.mustache'],
-          '_dist/<%= pkg.versionParts.major %>.<%= pkg.versionParts.minor %>.x/': ['views/*.mustache'],
-          '_dist/dev-master/': ['views/*.mustache']
+          '_dist/<%= pkg.version %>/': ['views/*.mustache']
         },
         options: {layout: 'none', data: 'data/*.json'},
       },
     },
     copy: {
-      dist-mustache: {
+      pre-dist: {
         files: [
           {
             expand: true,
@@ -50,11 +47,7 @@ module.exports = function(grunt) {
             	var temp = src.substring(0, src.lastIndexOf('.html')) + '.mustache';
               return dest + temp.substring(src.lastIndexOf('/'));
             }
-          }
-        ]
-      },
-      dist-php: {
-        files: [
+          },
           {
             expand: true,
             cwd: '_dist/',
@@ -65,6 +58,25 @@ module.exports = function(grunt) {
               return dest + temp.substring(src.lastIndexOf('/'));
             }
           }
+        ]
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            src: ['_dist/<%= pkg.version %>/**/*'],
+            dest: '_dist/<%= pkg.versionParts.major %>.x/'
+          },
+          {
+            expand: true,
+            src: ['_dist/<%= pkg.version %>/**/*'],
+            dest: '_dist/<%= pkg.versionParts.major %>.<%= pkg.versionParts.minor %>.x/'
+          },
+          {
+            expand: true,
+            src: ['_dist/<%= pkg.version %>/**/*'],
+            dest: '_dist/dev-master/'
+          },
         ]
       }
     },
@@ -86,7 +98,7 @@ module.exports = function(grunt) {
           to: '<?php print \$$1; ?>'
 
       }]
-    }
+    },
 	},
     // Before creating new files, remove files from previous build.
     clean: {
@@ -107,6 +119,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task to be run.
-  grunt.registerTask('default', ['clean', 'assemble', 'copy', 'replace']);
+  grunt.registerTask('default', ['clean', 'assemble', 'copy:pre-dist', 'replace', 'copy:dist']);
 
 };
