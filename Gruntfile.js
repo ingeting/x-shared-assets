@@ -1,7 +1,7 @@
 /*
- * button-component
- * https://github.com/upstage/button-component
- * Copyright (c) 2013 Jon Schlinkert
+ * x-shared-assets
+ * https://github.com/ingeting/x-shared-assets
+ * Copyright (c) 2014 Inge Thorud
  * Licensed under the MIT license.
  */
 
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
       },
     },
     copy: {
-      pre-dist: {
+      predist: {
         files: [
           {
             expand: true,
@@ -119,6 +119,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task to be run.
-  grunt.registerTask('default', ['clean', 'assemble', 'copy:pre-dist', 'replace', 'copy:dist']);
+  grunt.registerTask('default', ['clean', 'assemble', 'copy:predist', 'replace', 'copy:dist']);
 
 };
