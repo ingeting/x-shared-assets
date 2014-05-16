@@ -39,15 +39,29 @@ module.exports = function(grunt) {
       },
     },
     copy: {
-      dist: {
+      dist-mustache: {
         files: [
           {
-            expand: true, 
-            cwd: '_dist/', 
-            src: ['<%= pkg.version %>/*.html'], 
-            dest: '_dist/<%= pkg.version %>/mustache/', 
+            expand: true,
+            cwd: '_dist/',
+            src: ['<%= pkg.version %>/*.html'],
+            dest: '_dist/<%= pkg.version %>/mustache/',
             rename: function(dest, src) {
             	var temp = src.substring(0, src.lastIndexOf('.html')) + '.mustache';
+              return dest + temp.substring(src.lastIndexOf('/'));
+            }
+          }
+        ]
+      },
+      dist-php: {
+        files: [
+          {
+            expand: true,
+            cwd: '_dist/',
+            src: ['<%= pkg.version %>/*.html'],
+            dest: '_dist/<%= pkg.version %>/php/',
+            rename: function(dest, src) {
+              var temp = src.substring(0, src.lastIndexOf('.html')) + '.php';
               return dest + temp.substring(src.lastIndexOf('/'));
             }
           }
@@ -55,15 +69,24 @@ module.exports = function(grunt) {
       }
     },
     replace: {
-	  dist: {
+	  dist-mustache: {
 	    src: ['_dist/<%= pkg.version %>/mustache/*.mustache'],             // source files array (supports minimatch)
 	    overwrite: true,             // destination directory or file
 	    replacements: [{
 	      from: /<%[ \t]*([A-Z,a-z,0-9,\-,\_]+)[ \t]*%>/g,      // regex replacement ('Fooo' to 'Mooo')
 		      to: '{{$1}}'
-		    
+
 	    }]
-	  }
+	  },
+    dist-php: {
+      src: ['_dist/<%= pkg.version %>/php/*.php'],             // source files array (supports minimatch)
+      overwrite: true,             // destination directory or file
+      replacements: [{
+        from: /<%[ \t]*([A-Z,a-z,0-9,\-,\_]+)[ \t]*%>/g,      // regex replacement ('Fooo' to 'Mooo')
+          to: '<?php print \$$1; ?>'
+
+      }]
+    }
 	},
     // Before creating new files, remove files from previous build.
     clean: {
