@@ -64,24 +64,27 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            src: ['_dist/<%= pkg.version %>/**/*'],
+            cwd: '_dist/<%= pkg.version %>/',
+            src: ['**/*'],
             dest: '_dist/<%= pkg.versionParts.major %>.x/'
           },
           {
             expand: true,
-            src: ['_dist/<%= pkg.version %>/**/*'],
+            cwd: '_dist/<%= pkg.version %>/',
+            src: ['**/*'],
             dest: '_dist/<%= pkg.versionParts.major %>.<%= pkg.versionParts.minor %>.x/'
           },
           {
             expand: true,
-            src: ['_dist/<%= pkg.version %>/**/*'],
+            cwd: '_dist/<%= pkg.version %>/',
+            src: ['**/*'],
             dest: '_dist/dev-master/'
           },
         ]
       }
     },
     replace: {
-	  dist-mustache: {
+	  mustache: {
 	    src: ['_dist/<%= pkg.version %>/mustache/*.mustache'],             // source files array (supports minimatch)
 	    overwrite: true,             // destination directory or file
 	    replacements: [{
@@ -90,7 +93,7 @@ module.exports = function(grunt) {
 
 	    }]
 	  },
-    dist-php: {
+    php: {
       src: ['_dist/<%= pkg.version %>/php/*.php'],             // source files array (supports minimatch)
       overwrite: true,             // destination directory or file
       replacements: [{
