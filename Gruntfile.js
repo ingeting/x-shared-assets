@@ -38,6 +38,33 @@ module.exports = function(grunt) {
         options: {layout: 'none', data: 'data/*.json'},
       },
     },
+    copy: {
+      dist: {
+        files: [
+          {
+            expand: true, 
+            cwd: '_dist/', 
+            src: ['<%= pkg.version %>/*.html'], 
+            dest: '_dist/<%= pkg.version %>/mustache/', 
+            rename: function(dest, src) {
+            	var temp = src.substring(0, src.lastIndexOf('.html')) + '.mustache';
+              return dest + temp.substring(src.lastIndexOf('/'));
+            }
+          }
+        ]
+      }
+    },
+    replace: {
+	  dist: {
+	    src: ['_dist/<%= pkg.version %>/mustache/*.mustache'],             // source files array (supports minimatch)
+	    overwrite: true,             // destination directory or file
+	    replacements: [{
+	      from: /<%[ \t]*([A-Z,a-z,0-9,\-,\_]+)[ \t]*%>/g,      // regex replacement ('Fooo' to 'Mooo')
+		      to: '{{$1}}'
+		    
+	    }]
+	  }
+	},
     // Before creating new files, remove files from previous build.
     clean: {
       dist: [
@@ -53,8 +80,10 @@ module.exports = function(grunt) {
   // Load npm plugins to provide necessary tasks.
   grunt.loadNpmTasks('assemble');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-text-replace');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task to be run.
-  grunt.registerTask('default', ['clean', 'assemble']);
+  grunt.registerTask('default', ['clean', 'assemble', 'copy', 'replace']);
 
 };
