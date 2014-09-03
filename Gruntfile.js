@@ -84,21 +84,17 @@ module.exports = function(grunt) {
       }
     },
     replace: {
-	  mustache: {
-	    src: ['_dist/<%= pkg.version %>/mustache/*.mustache'],             // source files array (supports minimatch)
-	    overwrite: true,             // destination directory or file
-	    replacements: [{
-	      from: /<%[ \t]*([A-Z,a-z,0-9,\-,\_]+)[ \t]*%>/g,      // regex replacement ('Fooo' to 'Mooo')
-		      to: '{{$1}}'
-
-	    }]
-	  },
     php: {
       src: ['_dist/<%= pkg.version %>/php/*.php'],             // source files array (supports minimatch)
       overwrite: true,             // destination directory or file
       replacements: [{
-        from: /<%[ \t]*([A-Z,a-z,0-9,\-,\_]+)[ \t]*%>/g,      // regex replacement ('Fooo' to 'Mooo')
-          to: '<?php print \$$1; ?>'
+        from: /{{[ \t]*([A-Z,a-z,0-9,\-,\_]+)[ \t]*}}/g,      // regex replacement
+          to: '<?php print $ $1; ?>'
+
+      },
+      {
+        from: /print \$(\s)/g,      // regex replacement
+          to: 'print $'
 
       }]
     },

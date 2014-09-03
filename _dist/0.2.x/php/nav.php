@@ -9,5 +9,5 @@
   
 
 
-  tns-tag: dagbladet/<?php print $1; ?>
+  tns-tag: dagbladet/<?php print $tnsTag; ?>
 </ul>
